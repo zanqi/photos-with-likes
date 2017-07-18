@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import PhotoList from './components/photo-list';
+import AddPhoto from './components/AddPhoto';
 
 class App extends Component {
   render() {
@@ -11,7 +12,12 @@ class App extends Component {
           <div className="title">Photo Gallery</div>
         </div>
 
-        <PhotoList />
+        <div className="container">
+          <div className="col-md-12">
+            <AddPhoto />
+          </div>
+          <PhotoList />
+        </div>
       </div>
     );
   }

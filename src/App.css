@@ -17,7 +17,6 @@ img {
 .imageCard {
   margin: 20px;
   padding: 25px;
-  height: 300px;
   box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2), 0px 6px 20px 0px rgba(0,0,0,0.19) !important
 }
 
