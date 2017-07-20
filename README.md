@@ -7,4 +7,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Screenshot
 
-![Screenshot](/../screen-shot/Capture.JPG?raw=true "Screenshot")
+![Screenshot](/../screenshot/Capture.JPG?raw=true "Screenshot")
