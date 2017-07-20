@@ -15,7 +15,7 @@ img {
 }
 
 .imageCard {
-  margin: 20px;
+  margin-top: 30px; 
   padding: 25px;
   box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2), 0px 6px 20px 0px rgba(0,0,0,0.19) !important
 }
@@ -28,4 +28,12 @@ img {
 
 .imgContainer {
   height: 180px;
+  clear: both;
+}
+
+.PhotoAction {
+  float: right;
+  position: relative;
+  top: -15px;
+  right: -10px;
 }
