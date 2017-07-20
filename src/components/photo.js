@@ -1,4 +1,5 @@
 import React from 'react';
+import Likes from './Likes'
 
 const Photo = (props) => {
   return (
@@ -8,9 +9,7 @@ const Photo = (props) => {
           <img className="img-rounded" src={props.photo.url} alt={props.photo.description} />
         </div>
         <h4 className="imageDescription">{props.photo.description}</h4>
-        <span className="glyphicon glyphicon-thumbs-up" ></span>
-        <span>  {props.photo.likes} likes</span>
-
+        <Likes likes={props.photo.likes} />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const AddPhoto = () => {
                     </div>
 
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Title" />
+                        <input type="text" className="form-control" placeholder="Description" />
                     </div>
 
                     <button type="submit" className="btn btn-primary">Add</button>
