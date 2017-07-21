@@ -19,6 +19,15 @@ AlbumStore.prototype.remove = function (id) {
     delete this.photos[id];
 }
 
+AlbumStore.prototype.removeAsync = function (id) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            this.remove(id);
+            resolve();
+        }, 2000);
+    });
+}
+
 AlbumStore.prototype.find = function (term) {
     const result = [];
     Object.keys(this.photos).forEach((key) => {
@@ -30,6 +39,14 @@ AlbumStore.prototype.find = function (term) {
     return result;
 }
 
+AlbumStore.prototype.findAsync = function (term) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(this.find(term));
+        }, 2000);
+    });
+}
+
 AlbumStore.prototype.edit = function (photo) {
     if (photo === undefined || photo.id === undefined || photo.url === undefined) {
         return false;
@@ -39,6 +56,19 @@ AlbumStore.prototype.edit = function (photo) {
     }
     this.photos[photo.id] = photo;
     return true;
+}
+
+AlbumStore.prototype.editAsync = function (photo) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (this.edit(photo)) {
+                resolve();
+            }
+            else {
+                reject();
+            }
+        }, 2000);
+    });
 }
 
 AlbumStore.prototype.insertTestData = function () {

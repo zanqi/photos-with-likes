@@ -12,25 +12,36 @@ class App extends Component {
     this.albumStore = new AlbumStore();
     this.handleLike = this.handleLike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.state = {
-      photos: this.albumStore.find('')
-    }
+    this.state = { photos: [] };
+
+    this.albumStore
+      .findAsync('')
+      .then((photos) => { this.setState({ photos }) });
   }
 
-  handleLike(photo){
+  handleLike(photo) {
     photo.likes = photo.likes + 1;
-    const edited = this.albumStore.edit(photo);
-    console.log('Edited in AlbumStore: ' + edited);
+    this.albumStore
+      .editAsync(photo)
+      .then(() => {
+        console.log('Edited in AlbumStore');
+        this.setState(this.state);
+      })
+      .catch(() => {
+        console.log('Failed to edit in AlbumStore');
+      });
 
-    this.setState(this.state);
   }
 
-  handleDelete(id){
-    this.albumStore.remove(id);
-    console.log('Removed in AlbumStore');
-    this.setState(prev => {
-      return { photos: prev.photos.filter(p => p.id !== id) };
-    });
+  handleDelete(id) {
+    this.albumStore
+      .removeAsync(id)
+      .then(() => {
+        console.log('Removed in AlbumStore');
+        this.setState(prev => {
+          return { photos: prev.photos.filter(p => p.id !== id) };
+        });
+      });
   }
 
   render() {
@@ -45,7 +56,7 @@ class App extends Component {
           <div className="col-md-12">
             <AddPhoto />
           </div>
-          <PhotoList photos={photos} onLike = {this.handleLike} onDelete = {this.handleDelete} />
+          <PhotoList photos={photos} onLike={this.handleLike} onDelete={this.handleDelete} />
         </div>
       </div>
     );
