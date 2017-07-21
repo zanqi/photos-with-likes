@@ -3,38 +3,49 @@ import React, { Component } from 'react';
 import './App.css';
 import PhotoList from './components/Photo-list';
 import AddPhoto from './components/AddPhoto';
+import Header from './components/Header';
 import AlbumStore from './services/AlbumStore';
 
 class App extends Component {
-  getPhotos() {
-    const albumStore = new AlbumStore();
-    const testPhotos = [
-      { id: 1, description: 'My Cat', likes: 100, url: 'http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg' },
-      { id: 2, description: 'My Dog', likes: 10, url: 'https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi' },
-      { id: 3, description: 'My House', likes: 4, url: 'http://tinyhousetalk.com/wp-content/uploads/1020sf-small-house-with-garage-newport-lane-house-by-lanefab-001-600x397.jpg' },
-      { id: 4, description: 'My Cat', likes: 100, url: 'http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg' }
-    ];
-    testPhotos.forEach(p => {
-      albumStore.add(p);
-    })
+  constructor(props) {
+    super(props);
+    this.albumStore = new AlbumStore();
+    this.handleLike = this.handleLike.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      photos: this.albumStore.find('')
+    }
+  }
 
-    return albumStore.find('');
+  handleLike(photo){
+    photo.likes = photo.likes + 1;
+    const edited = this.albumStore.edit(photo);
+    console.log('Edited in AlbumStore: ' + edited);
+
+    this.setState(this.state);
+  }
+
+  handleDelete(id){
+    this.albumStore.remove(id);
+    console.log('Removed in AlbumStore');
+    this.setState(prev => {
+      return { photos: prev.photos.filter(p => p.id !== id) };
+    });
   }
 
   render() {
-    const photos = this.getPhotos();
+    const photos = this.state.photos;
+    console.log(photos);
 
     return (
       <div className="App">
-        <div className="App-header">
-          <div className="title">Photo Gallery</div>
-        </div>
+        <Header />
 
         <div className="container">
           <div className="col-md-12">
             <AddPhoto />
           </div>
-          <PhotoList photos={photos} />
+          <PhotoList photos={photos} onLike = {this.handleLike} onDelete = {this.handleDelete} />
         </div>
       </div>
     );
