@@ -25,7 +25,7 @@ class App extends Component {
       .editAsync(photo)
       .then(() => {
         console.log('Edited in AlbumStore');
-        this.setState(this.state);
+        this.forceUpdate();
       })
       .catch(() => {
         console.log('Failed to edit in AlbumStore');
