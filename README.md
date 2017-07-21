@@ -6,7 +6,7 @@ Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Architecture
-The main UI Components arrange from parent to children like this: App > PhotoList > Photo
+The main UI Components arrange from parent to children like this: App > PhotoList > Photo. App is the smart component that talks to a service: AlbumStore. The other components are kept dumb.
 
 ### Features
 * Likes
