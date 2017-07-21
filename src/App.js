@@ -30,7 +30,6 @@ class App extends Component {
       .catch(() => {
         console.log('Failed to edit in AlbumStore');
       });
-
   }
 
   handleDelete(id) {
